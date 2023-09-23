@@ -19,11 +19,10 @@ void insertion_sort_list(listint_t **list)
 			current->next = tmp->next;
 			tmp->prev = current->prev;
 
-			if (tmp->next)
-				tmp->next->prev = current;
-
 			if (current->prev)
 				current->prev->next = tmp;
+			if (tmp->next)
+				tmp->next->prev = current;
 
 			current->prev = tmp;
 			tmp->next = current;
