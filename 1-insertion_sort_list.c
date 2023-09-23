@@ -18,14 +18,18 @@ void insertion_sort_list(listint_t **list)
 			tmp = current->next;
 			current->next = tmp->next;
 			tmp->prev = current->prev;
+
 			if (tmp->next)
 				tmp->next->prev = current;
-			tmp->prev = current->prev;
+
 			if (current->prev)
 				current->prev->next = tmp;
+
 			current->prev = tmp;
 			tmp->next = current;
-			if (!tmp->prev)
+			if (tmp->prev)
+				current = tmp->prev;
+			else
 				*list = tmp;
 			print_list(*list);
 		}
