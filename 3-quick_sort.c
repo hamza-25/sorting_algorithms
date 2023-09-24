@@ -51,7 +51,7 @@ int lomuto_partition(int *array, int low, int high, size_t size)
     printf("\n");*/
     
     /* add args size and replace 10 withe the of array*/
-    print_array(array, 10);
+    print_array(array, size);
 
     return (i + 1);
 }
