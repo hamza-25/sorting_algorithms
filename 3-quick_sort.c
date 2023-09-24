@@ -8,7 +8,7 @@
  *
  * Return: Index of the pivot element
  */
-int lomuto_partition(int *array, int low, int high)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
     int pivot, i, j, k, temp;
 
@@ -74,13 +74,14 @@ void quick_sort(int *array, size_t size)
  * @low: Starting index of the array/subarray
  * @high: Ending index of the array/subarray
  */
-void quick_sort_helper(int *array, int low, int high)
+void quick_sort_helper(int *array, int low, int high, size_t size)
 {
+
     if (low < high)
     {
-        int pivot_index = lomuto_partition(array, low, high);
+        int pivot_index = lomuto_partition(array, low, high, size);
 
-        quick_sort_helper(array, low, pivot_index - 1);
-        quick_sort_helper(array, pivot_index + 1, high);
+        quick_sort_helper(array, low, pivot_index - 1, size);
+        quick_sort_helper(array, pivot_index + 1, high, size);
     }
 }
