@@ -1,21 +1,33 @@
 #include "sort.h"
-
+/**
+ * copy_array - func that copy array
+ * @source: original array
+ * @destination: copy array
+ * @size: size of array
+*/
 void copy_array(int source[], int destination[], size_t size)
-{    
+{
 	size_t i;
 
 	for (i = 0; i < size; i++)
 		destination[i] = source[i];
 }
 
+/**
+ * is_array_equal - func that cchek if arrays are equals
+ * @arr1: first array
+ * @arr2: second array
+ * @size: size of array
+ * Return: true if equal otherwise false
+*/
 bool is_array_equal(int arr1[], int arr2[], size_t size)
 {
 	size_t i;
 
 	for (i = 0; i < size; i++)
 		if (arr1[i] != arr2[i])
-			return false;
-    return true;
+			return (false);
+	return (true);
 }
 
 /**
@@ -30,7 +42,7 @@ bool is_array_equal(int arr1[], int arr2[], size_t size)
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot, i, j, temp;
-	int array_copy[10];
+	int array_copy[sizeof(array)];
 	bool is_sorted;
 
 	is_sorted = false;
@@ -46,7 +58,7 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 			is_sorted = true;
 			i++;
 			if (i != j)
-			{	
+			{
 				/* Swap array[i] and array[j] */
 				temp = array[i];
 				array[i] = array[j];
@@ -57,10 +69,10 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 	}
 
 	temp = array[i + 1];
-        array[i + 1] = array[high];
-        array[high] = temp;
+	array[i + 1] = array[high];
+	array[high] = temp;
 
-        /* Print the array after each swap*/
+	/* Print the array after each swap*/
 	if (!is_array_equal(array, array_copy, size))
 		print_array(array, size);
 
