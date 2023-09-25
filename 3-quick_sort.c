@@ -30,7 +30,7 @@ bool is_array_equal(int arr1[], int arr2[], size_t size)
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot, i, j, temp;
-	int array_copy[10];
+	int array_copy[sizeof(array)];
 	bool is_sorted;
 
 	is_sorted = false;
