@@ -1,5 +1,23 @@
 #include "sort.h"
 
+void copy_array(int source[], int destination[], size_t size)
+{    
+	size_t i;
+
+	for (i = 0; i < size; i++)
+		destination[i] = source[i];
+}
+
+bool is_array_equal(int arr1[], int arr2[], size_t size)
+{
+	size_t i;
+
+	for (i = 0; i < size; i++)
+		if (arr1[i] != arr2[i])
+			return false;
+    return true;
+}
+
 /**
  * lomuto_partition - Lomuto partition for Quick Sort
  * @array: Array to be sorted
@@ -12,41 +30,40 @@
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot, i, j, temp;
-    bool is_sorted;
-    
-    is_sorted = false;
+	int array_copy[10];
+	bool is_sorted;
 
+	is_sorted = false;
+	(void)is_sorted;
 	(void)size;
 	i = low - 1;
 	pivot = array[high];
-
+	copy_array(array, array_copy, size);
 	for (j = low; j <= high - 1; j++)
 	{
 		if (array[j] <= pivot)
 		{
-            is_sorted = true;
+			is_sorted = true;
 			i++;
-
-			/* Swap array[i] and array[j] */
-			temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-
-            print_array(array, size);
-
+			if (i != j)
+			{	
+				/* Swap array[i] and array[j] */
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
+			}
 		}
 	}
 
-	/* Swap array[i + 1] and pivot (array[high]) */
 	temp = array[i + 1];
-	array[i + 1] = array[high];
-	array[high] = temp;
+        array[i + 1] = array[high];
+        array[high] = temp;
 
-	/* Print the array after each swap */
-    if(is_sorted == true)
-    {
-	print_array(array, size);
-    }
+        /* Print the array after each swap*/
+	if (!is_array_equal(array, array_copy, size))
+		print_array(array, size);
+
 	return (i + 1);
 }
 
