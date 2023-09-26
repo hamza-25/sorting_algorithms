@@ -10,13 +10,13 @@ void shell_sort(int *array, size_t size)
 {
 	size_t interval = 1;
 	size_t i, j;
-    int temp;
+	int temp;
 
+	if (!array || size < 2)
+		return;
 	/* Generate the Knuth sequence */
 	while (interval <= size / 3)
-	{
-		interval = interval * 3 + 1;
-	}
+		interval = (interval * 3) + 1;
 
 	while (interval > 0)
 	{
@@ -31,14 +31,7 @@ void shell_sort(int *array, size_t size)
 			}
 			array[j] = temp;
 		}
-
-		/* Print the array after each interval decrease */
-		for (i = 0; i < size; i++)
-		{
-			printf("%d ", array[i]);
-		}
-		printf("\n");
-
+		print_array(array, size);
 		interval = (interval - 1) / 3;
 	}
 }
