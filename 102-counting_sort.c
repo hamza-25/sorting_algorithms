@@ -8,7 +8,7 @@
 
 void counting_sort(int *array, size_t size)
 {
-	size_t largest, i = 0, j;
+	size_t largest, i = 0;
 	int *array_index, *new_array;
 
 	if (!array || size < 2)
@@ -21,8 +21,8 @@ void counting_sort(int *array, size_t size)
 	largest += 1;
 
 	/*Reserve memory*/
-	array_index = calloc(largest, sizeof(size_t));
-	new_array = calloc(size, sizeof(size_t));
+	array_index = calloc(largest, sizeof(int));
+	new_array = calloc(size, sizeof(int));
 	if (!array_index || !new_array)
 		return;
 	/*iterate from array value and add 1 for each index*/
@@ -33,10 +33,10 @@ void counting_sort(int *array, size_t size)
 		array_index[i] += array_index[i - 1];
 
 	/*assign the sorted array to new_array*/
-	for (i = 0, j = 0; j < size; i++, j++)
+	for (i = 0; i < size; i++)
 	{
 		new_array[(array_index[array[i]]) - 1] = array[i];
-		array_index[array[i]] -= 1;
+		/*array_index[array[i]] -= 1;*/
 	}
 
 	/*assign the value of array to new_array*/
