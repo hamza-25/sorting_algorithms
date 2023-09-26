@@ -29,4 +29,8 @@ void quick_sort(int *array, size_t size);
 void quick_sort_helper(int *array, int low, int high, size_t size);
 void shell_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
+void merge_sub(int *sub, int *buff, size_t front, size_t mid,
+		size_t back);
+void merge_sort_recursive(int *sub, int *buff, size_t front, size_t back);
+void merge_sort(int *array, size_t size);
 #endif
